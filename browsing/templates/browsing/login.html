@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign In</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/fonts.css'%}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'css/login.css'%}">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><a href='/'><img src="{% static 'images/WEBSITELOGO.png' %}" alt="sing up image"></a></figure>
+                    
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign In</h2>
+                        <form method="POST" class="register-form" id="login-form">
+							{% csrf_token %}
+                            <div class="form-group">
+                                <label for="your_name"><img src="{%static 'images/account.png'%}"></i></label>
+                                <input type="text" name="username" id="your_name" placeholder="Username"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><img src="{%static 'images/pass.png'%}"></i></label>
+                                <input type="password" name="password" id="your_pass" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Sign In"/>
+                            </div>
+					{% for message in messages %}
+						<p id="messages">{{message}}</p>
+					{% endfor %}
+                    <a href="{% url 'browsing:registerPage' %}"class="signup-image-link">Create an account</a>
+                        </form>
+                        <div class="social-login">
+                            <span class="social-label">Follow us here</span>
+                            <ul class="socials">
+                                <li><a href="https://www.facebook.com/LanderMtthw.CG"><img src="{%static 'images/fb.gif'%}"  width="25px" height="25px"></i></a></li>
+                                <li><a href="https://twitter.com/Kekwkekwww"><img src="{%static 'images/twitter.gif'%}" width="25px" height="25px"></i></a></li>
+                                <li><a href="https://www.instagram.com/_notlandthere/"><img src="{%static 'images/ig.gif'%}" width="25px" height="25px"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+{% load static %}
+<link href="{% static 'css/poppins.css'%}" rel='stylesheet'>
+<link rel="stylesheet" href="{% static 'css/navbar.css'%}">
+
+<nav class="flex text-black-100 justify-between items-center py-3 px-4 fixed w-full z-50">
+  
+  <a href="/"><img src="{% static 'images/WEBSITELOGO.PNG'%}" class="logo" width="10%" height="10%"></a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="{% url 'browsing:about'%}">About</a></li>
+  </ul>
+  <img src="{% static 'images/Prof.PNG'%}" class="user-pic" onclick="toggleMenu()">
+
+  <div class="sub-menu-wrap" id="subMenu">
+    <div class="sub-menu">
+      <div class="user-info">
+        <img src="{% static 'images/user.PNG'%}">
+        <p>{{request.user}}</p>
+      </div>
+      <hr>
+
+
+      {% if request.user.is_authenticated %}
+      <div>
+        <a href="{% url 'browsing:logout' %}" method="POST" class="sub-menu-link">
+            {% csrf_token %}
+              <img src="{% static 'images/logout.PNG'%}">
+                <p>Logout</p>
+              <span>></span>
+        </a> 
+        {% else %}
+
+      <a href="{% url 'browsing:login' %}" class="sub-menu-link">
+        <img src="{% static 'images/logout.PNG'%}">
+        <p>Login</p>
+        <span>></span>
+      </a>
+    </div>
+      {% endif %}
+    </div>
+  </div>
+
+</nav>
+<script>
+  let subMenu = document.getElementById("subMenu")
+
+  function toggleMenu(){
+    subMenu.classList.toggle("open-menu")
+  }
+</script>
